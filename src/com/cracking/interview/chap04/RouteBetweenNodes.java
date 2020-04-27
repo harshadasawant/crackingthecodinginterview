@@ -28,8 +28,6 @@ public class RouteBetweenNodes {
         while (!queue.isEmpty()) {
             Node curr = queue.remove();
             if (curr == end) {
-                System.out.println("i="+curr.data);
-                System.out.println("j= "+end.data);
                 return true;
             }
             Iterator<Node> nodeIterator = curr.getAdjacent().iterator();
@@ -48,13 +46,18 @@ public class RouteBetweenNodes {
 
     public static void main(String[] args) {
         Node node1 = new Node(1);
-        Node node2 = new Node(3);
-        Node node3 = new Node(4);
+        Node node2 = new Node(2);
+        Node node3 = new Node(3);
+        Node node4 = new Node(4);
+        Node node5 = new Node(5);
+
         node1.addAdjacent(node2);
-        node2.addAdjacent(node3);
+        node1.addAdjacent(node3);
+        node1.addAdjacent(node4);
+        node3.addAdjacent(node5);
         Graph g = new Graph();
         g.addNode(node1);
-        System.out.println("Route exists? (should be true): " + RouteBetweenNodes.search(g, node1, node2));
+        System.out.println("Is Route exists : " + RouteBetweenNodes.search(g, node1, node4));
     }
 }
 
