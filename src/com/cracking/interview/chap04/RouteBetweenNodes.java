@@ -46,15 +46,11 @@ public class RouteBetweenNodes {
 
 
     public static void main(String[] args) {
-//    Set<Node> nodes = new HashSet<>();
         Node node1 = new Node(1);
         Node node2 = new Node(3);
         Node node3 = new Node(4);
         node1.addAdjacent(node2);
         node2.addAdjacent(node3);
-//        nodes.add(node1);
-//        nodes.add(node2);
-//        nodes.add(node3);
         Graph g = new Graph();
         g.addNode(node1);
         System.out.println("Route exists? (should be true): " + RouteBetweenNodes.search(g, node1, node2));
