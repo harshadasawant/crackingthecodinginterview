@@ -11,10 +11,10 @@ import java.util.*;
  */
 enum state{
     Unvisited,
-    Visited,
-    Visiting
+    Visited
 }
 public class RouteBetweenNodes {
+
     public static boolean search (Graph g, Node start, Node end){
         if (start == end) {
             return true;
