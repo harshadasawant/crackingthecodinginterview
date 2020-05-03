@@ -11,12 +11,11 @@ public class Node<T> {
     public boolean visited;
     private Set<Node<T>> adjacent = new HashSet();
 
-    public Set<Node<T>> getAdjacent() {
-        return adjacent;
-    }
-
     public Node(T data) {
         this.data = data;
+    }
+    public Set<Node<T>> getAdjacent() {
+        return adjacent;
     }
 
     public T getData() {

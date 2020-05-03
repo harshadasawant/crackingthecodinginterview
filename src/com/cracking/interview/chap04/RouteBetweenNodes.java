@@ -20,31 +20,36 @@ public class RouteBetweenNodes {
             return true;
         }
 
-
+    //use linkedlist as queue, because in this case we want to search node so BFS(Breadth First Search) algorithm is preferable
         LinkedList<Node> queue = new LinkedList<Node>(); // use linkedList as a queue
         start.visit();
         queue.add(start);
 
         while (!queue.isEmpty()) {
-            Node curr = queue.remove();
-            if (curr == end) {
-                return true;
-            }
-            Iterator<Node> nodeIterator = curr.getAdjacent().iterator();
+            Node current = queue.remove();
+            if (current.getAdjacent() != null) {
+                Iterator<Node> nodeIterator = current.getAdjacent().iterator();
 
-            while (nodeIterator.hasNext()) {
-                Node neighbor = nodeIterator.next();
-                if (!neighbor.visited) {
-                    neighbor.visit();
-                    queue.add(neighbor);
+                while (nodeIterator.hasNext()) {
+                    Node neighbor = nodeIterator.next();
+                    if (!neighbor.visited) {
+                        if (neighbor == end) {
+                            return true;
+                        } else {
+                            neighbor.visit();
+                            queue.add(neighbor);
+                        }
+                    }
                 }
             }
+            current.visit();
         }
         return false;
     }
 
 
     public static void main(String[] args) {
+        Graph g = new Graph();
         Node node1 = new Node(1);
         Node node2 = new Node(2);
         Node node3 = new Node(3);
@@ -55,9 +60,10 @@ public class RouteBetweenNodes {
         node1.addAdjacent(node3);
         node1.addAdjacent(node4);
         node3.addAdjacent(node5);
-        Graph g = new Graph();
+
         g.addNode(node1);
-        System.out.println("Is Route exists : " + RouteBetweenNodes.search(g, node1, node4));
+
+        System.out.println("Is Route exists : " + RouteBetweenNodes.search(g, node1, node5));
     }
 }
 
