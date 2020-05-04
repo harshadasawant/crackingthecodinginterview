@@ -9,10 +9,6 @@ import java.util.*;
  * @author Harshada Sawant
  * Q 4.1:-> Route Between Nodes : Given a directed graph, design an algorith to find out whether there is a route between two node.
  */
-enum state{
-    Unvisited,
-    Visited
-}
 public class RouteBetweenNodes {
 
     public static boolean search (Graph g, Node start, Node end){
@@ -27,11 +23,13 @@ public class RouteBetweenNodes {
 
         while (!queue.isEmpty()) {
             Node current = queue.remove();
+            System.out.println("current node="+current.data);
             if (current.getAdjacent() != null) {
                 Iterator<Node> nodeIterator = current.getAdjacent().iterator();
 
                 while (nodeIterator.hasNext()) {
                     Node neighbor = nodeIterator.next();
+                    System.out.println("neighbor node="+neighbor.data);
                     if (!neighbor.visited) {
                         if (neighbor == end) {
                             return true;
